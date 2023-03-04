@@ -1,6 +1,7 @@
 # ChatGPT-tui
 
-A terminal user interface for [ChatGPT API](https://openai.com/blog/introducing-chatgpt-and-whisper-apis#chat-gpt-api) using [textual](https://github.com/Textualize/textual)
+A terminal user interface for [ChatGPT API](https://openai.com/blog/introducing-chatgpt-and-whisper-apis#chat-gpt-api)
+using [textual](https://github.com/Textualize/textual)
 
 ## Installation
 
