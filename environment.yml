@@ -1,0 +1,15 @@
+name: chatgpt
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11.0
+  - refurb
+  - pre-commit
+  - textual
+  - openai
+  - rich
+  - markdown-it-py
+  - httpx
+  - linkify-it-py
