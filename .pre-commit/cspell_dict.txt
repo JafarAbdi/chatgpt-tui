@@ -4,3 +4,5 @@ chatgpt
 acreate
 conda
 httpx
+micromamba
+Jafar
