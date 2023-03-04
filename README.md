@@ -5,7 +5,7 @@
 A terminal user interface for [ChatGPT API](https://openai.com/blog/introducing-chatgpt-and-whisper-apis#chat-gpt-api)
 using [textual](https://github.com/Textualize/textual)
 
-https://user-images.githubusercontent.com/16278108/222926204-ee07e55e-5058-4238-b960-38c902433e65.mp4
+[![Demo]](https://user-images.githubusercontent.com/16278108/222926204-ee07e55e-5058-4238-b960-38c902433e65.mp4)
 
 ## Installation
 
