@@ -1,0 +1,23 @@
+#chatgpt-query {
+    dock: bottom;
+}
+
+.user-prompt {
+    content-align: left middle;
+    border: solid darkred;
+    text-style: bold;
+}
+
+#sessions-history {
+    display: none;
+    scrollbar-gutter: stable;
+    overflow: auto;
+    width: 20%;
+    height: 100%;
+    dock: left;
+}
+
+ChatGPT.-show-sessions-history #sessions-history {
+    display: block;
+    max-width: 50%;
+}

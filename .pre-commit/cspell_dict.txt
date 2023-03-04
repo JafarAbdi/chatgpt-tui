@@ -1,0 +1,8 @@
+openai
+linkify
+chatgpt
+acreate
+conda
+httpx
+micromamba
+Jafar

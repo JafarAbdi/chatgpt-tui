@@ -1,0 +1,23 @@
+name: Format
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pre-commit:
+    name: pre-commit
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install micromamba environment
+        uses: mamba-org/provision-with-micromamba@v15
+        with:
+          environment-file: environment.yml
+      - uses: actions/setup-python@v2
+      - uses: pre-commit/action@v2.0.3
