@@ -11,7 +11,7 @@ import openai
 from textual.app import App
 from textual.containers import Container, Vertical
 from textual.reactive import var
-from textual.widgets import Input, Label, ListItem, ListView, Markdown, Static, Footer
+from textual.widgets import Footer, Input, Label, ListItem, ListView, Markdown, Static
 
 
 @dataclass(slots=True)
