@@ -1,0 +1,11 @@
+useGitignore: true
+dictionaryDefinitions:
+  - name: custom_dictionary
+    path: .pre-commit/cspell_dict.txt
+    addWords: true
+dictionaries:
+  - custom_dictionary
+ignorePaths:
+  - .gitignore
+  - .pre-commit-config.yaml
+  - ruff.toml
