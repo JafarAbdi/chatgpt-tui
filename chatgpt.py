@@ -36,6 +36,7 @@ class ChatGPT(App):
     CSS_PATH = "style.css"
     BINDINGS = [
         ("ctrl+t", "sessions_history", "Toggle sessions history list"),
+        ("ctrl+n", "new_session", "Start a new session"),
     ]
 
     show_sessions_history = var(default=False)
@@ -56,6 +57,13 @@ class ChatGPT(App):
         """A callback that will run when the sessions_history action is triggered."""
         self.show_sessions_history = not self.show_sessions_history
 
+    def action_new_session(self) -> None:
+        """A callback that will run when the new_session action is triggered."""
+        self.current_session = None
+        task = asyncio.create_task(self.reset_chat_history())
+        self.background_task.add(task)
+        task.add_done_callback(self.background_task.discard)
+
     def on_list_view_selected(self, event: ListView.Selected) -> None:
         """A callback that will run when a session is selected in the sessions history list.
 
@@ -71,12 +79,13 @@ class ChatGPT(App):
         """Reset the chat history to the current session."""
         await self.chat_history.query(Static).remove()
         await self.chat_history.query(Markdown).remove()
-        for prompt in self.current_session.prompts:
-            await self.chat_history.mount(
-                Static(prompt["question"], classes="user-prompt"),
-            )
-            await self.chat_history.mount(Markdown(prompt["answer"]))
-        self.call_after_refresh(self.chat_history.scroll_end, animate=False)
+        if self.current_session:
+            for prompt in self.current_session.prompts:
+                await self.chat_history.mount(
+                    Static(prompt["question"], classes="user-prompt"),
+                )
+                await self.chat_history.mount(Markdown(prompt["answer"]))
+            self.call_after_refresh(self.chat_history.scroll_end, animate=False)
 
     async def save_session(self, session: Session) -> None:
         """Save a session to the sessions directory.
@@ -97,7 +106,12 @@ class ChatGPT(App):
         """Yield widgets to compose the app."""
         # Get all files in the sessions dir and remove the extension to get the uuid then load the session
         if self.SESSIONS_DIR.exists():
-            for session in self.SESSIONS_DIR.iterdir():
+            sessions = sorted(
+                self.SESSIONS_DIR.iterdir(),
+                key=lambda f: f.stat().st_mtime,
+                reverse=True,
+            )
+            for session in sessions:
                 with session.open() as f:
                     self.sessions.append(Session(**json.load(f)))
         with Container():
