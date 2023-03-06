@@ -106,7 +106,12 @@ class ChatGPT(App):
         """Yield widgets to compose the app."""
         # Get all files in the sessions dir and remove the extension to get the uuid then load the session
         if self.SESSIONS_DIR.exists():
-            for session in self.SESSIONS_DIR.iterdir():
+            sessions = sorted(
+                self.SESSIONS_DIR.iterdir(),
+                key=lambda f: f.stat().st_mtime,
+                reverse=True,
+            )
+            for session in sessions:
                 with session.open() as f:
                     self.sessions.append(Session(**json.load(f)))
         with Container():
