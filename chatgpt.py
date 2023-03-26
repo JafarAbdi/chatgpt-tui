@@ -7,6 +7,9 @@ import uuid
 from dataclasses import dataclass
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
 from textual.app import App
 from textual.containers import Container, Vertical
