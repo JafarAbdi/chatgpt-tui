@@ -17,6 +17,6 @@ micromamba create -f environment.yml
 
 ## Usage
 
-```bash
-micromamba run -n chatgpt python3 chatgpt.py
-```
+- Set `OPENAI_API_KEY` environment variable. which you can be generated from https://platform.openai.com/account/api-keys
+
+- `micromamba run -n chatgpt python3 chatgpt.py`
